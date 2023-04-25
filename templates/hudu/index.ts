@@ -3,15 +3,31 @@ import { Input } from "./meta";
 
 export function generate(input: Input): Output {
   const services: Services = [];
+  
+  services.push({
+    type: "redis",
+    data: {
+      projectName: input.projectName,
+      serviceName: input.cacheServiceName
+    },
+  });
+  
+  services.push({
+    type: "postgres",
+    data: {
+      projectName: input.projectName,
+      serviceName: input.databaseServiceName
+    },
+  });
 
   services.push({
     type: "app",
     data: {
       projectName: input.projectName,
-      serviceName: input.databaseServiceName,
+      serviceName: input.workerServiceName,
       source: {
         type: "image",
-        image: "docker.io/bitnami/mongodb:4.4",
+        image: input.appServiceImage,
       },
       mounts: [
         {
