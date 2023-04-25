@@ -1,34 +1,29 @@
-name: Rocket.Chat
-description: Rocket.Chat is an open-source fully customizable communications
-  platform developed in JavaScript for organizations with high standards of data
-  protection. Real-time conversations between colleagues, with other companies
-  or with your customers, regardless of how they connect with you. The result is
-  an increase in productivity and customer satisfaction rates.Every day, tens of
-  millions of users in over 150 countries and in organizations such as Deutsche
-  Bahn, The US Navy, and Credit Suisse trust Rocket.Chat to keep their
-  communications completely private and secure.
+name: Hudu IT Documentation Platform
+description: Hudu is an IT documentation platform designed to help IT teams organize and centralize their knowledge base. 
+It offers features such as document management, knowledge sharing, and collaboration tools to make it easier for teams to create, manage, and access IT documentation.
+With Hudu, IT teams can streamline their workflows, reduce downtime, and improve overall productivity.
 instructions: null
 changeLog:
   - date: 2022-08-10
     description: first release
 links:
   - label: Website
-    url: https://rocket.chat/
+    url: https://hudu.com/
   - label: Documentation
-    url: https://docs.rocket.chat/
-  - label: Github
-    url: https://github.com/RocketChat/Rocket.Chat
+    url: https://support.hudu.com/hc/en-us
+  - label: Self-Hosting ENV Generator
+    url: https://self-hosting.usehudu.com/
 contributors:
-  - name: Bedeoan Raul
-    url: https://github.com/bedeoan
-  - name: Andrei Canta
-    url: https://github.com/deiucanta
+  - name: Mendy Green
+    url: https://github.com/greenlighttec
 schema:
   type: object
   required:
     - projectName
     - appServiceName
+    - workerServiceName
     - appServiceImage
+    - cacheServiceName
     - databaseServiceName
   properties:
     projectName:
@@ -37,12 +32,20 @@ schema:
     appServiceName:
       type: string
       title: App Service Name
-      default: rocketchat
+      default: app
+    workerServiceName:
+      type: string
+      title: Worker Service Name
+      default: worker    
     appServiceImage:
       type: string
       title: App Service Image
-      default: rocket.chat:5.2.0
+      default: hududocker/hudu:latest     
     databaseServiceName:
       type: string
       title: Database Service Name
-      default: rocketchat-db
+      default: db
+    cacheServiceName:
+      type: string
+      title: Cache Service Name
+      default: redis       
